@@ -8,13 +8,13 @@
 
    ![Linux](img/1.PNG)
 
-2. En en apartado de `Block Storages`, accedemos a `Block Volumes`, y pulsamos en `Create Block Volume`. Nombramos cada volumen como `blockvol1`y `blockvol2` y creamos os volumenes.
+2. En en apartado de `Block Storages`, accedemos a `Block Volumes`, y pulsamos en `Create Block Volume`. Nombramos cada volumen como `blockvol1`y `blockvol2` y creamos os volúmenes.
 
    ![Linux](img/2.PNG)
 
    ![Linux](img/3.PNG)
 
-3. Aquí podemos ver como nuestro `blockvol2`se esta generando, una vez esten en verde, los tendremos preparados para agregarlos a nuestra máquina virtual.
+3. Aquí podemos ver como nuestro `blockvol2`se esta generando, una vez estén en verde, los tendremos preparados para agregarlos a nuestra máquina virtual.
 
    ![Linux](img/4.PNG)
 
@@ -26,7 +26,7 @@
 
    ![Linux](img/6.PNG)
 
-6. Aquí podemos ver los volumenes `Attached` (Añadidos), ahora iniciamos nuestra máquina y nos conectamos por SSH.
+6. Aquí podemos ver los volúmenes `Attached` (Añadidos), ahora iniciamos nuestra máquina y nos conectamos por SSH.
    
    ![Linux](img/7.PNG)
 
@@ -109,7 +109,40 @@
 
    ![Linux](img/14.PNG)
 
-3. Comprobamos que estan montadas las particiones en los puntos de montaje que hemos creado.
+3. Comprobamos que están montadas las particiones en los puntos de montaje que hemos creado.
+
+   ![Linux](img/31.png)
+
+4. Ejecutamos el siguiente comando para ver las UUID para añadirlas al archivo de configuracion `fstab` que puede utilizarse para definir cómo deben montarse las particiones de disco, otros dispositivos de bloque o sistemas de archivos remotos en el sistema de archivos. 
+
+      ```bash
+   lsblk -f
+   ```
+
+   ![Linux](img/30.png)
+
+5. Editamos el archivo `/etc/fstab` con el comando:
+
+     ```bash
+  sudo nano /etc/fstab
+    ```
+
+ * Agregamos las entradas de montaje: Añade una línea para cada partición que quieres montar automáticamente. A continuación, se muestra el formato básico para cada entrada:
+
+```bash
+UUID=<UUID_partición>   <punto_de_montaje>   <sistema_de_archivos>   defaults   0   2
+```
+
+ * Nuestro código quedaria así:
+
+```bash
+UUID=67553cab-17f5-43bc-8ae6-c16059f22536   /mnt/pruebaxfs   xfs   defaults   0   2
+UUID=ffc5fb2f-d4df-49d6-8103-717b62c434ed   /mnt/pruebaext4  ext4  defaults   0   2
+```
+
+   ![Linux](img/32.png)
+
+6. Reiniciamos nuestra máquina y comprobamos con el comando `lsblk`que se han montado automaticamente los discos. 
 
 ## Parte 2: Benchmark de IOPS y Throughput
 
@@ -126,9 +159,9 @@ Para medir el rendimiento, vamos usar la herramienta `fio`.
 
 ### Paso 2: Ejecutar Benchmark de IOPS y Throughput
 
-Oracle nos promete en los block volumes que hemos creado un rendimiento de:
+Oracle nos promete en los `block volumes` que hemos creado un rendimiento de:
 
->![Linux](img/29.PNG)
+>![Linux](img/29.png)
 
 Estos son los comandos que vamos a usar para hacer los test de IOPS y Throughput. Vamos a realizar el test de lectura, escritura y lectura/escritura para ver el resultado.
 
@@ -152,7 +185,7 @@ sudo fio --name=randrw_test_1G --filename=/mnt/DISCO/test_file_1G --size=TAMAÑO
 
 Nosotros vamos a realizar un test de `100kb` y de `1GB`, para ello debemos colocar en los comandos `100k` o `1G` en lugar de `TAMAÑO` y colocar la particion correcta donde pone `DISCO`.
 
-A continuacion se mostrarán los resultados de los test, se han hecho 3 medidas de cada, pero unicamente voy a poner 2 captura de cada ya que son muchas captuaras y los resultados son muy parecidas:
+A continuación se mostrarán los resultados de los test, se han hecho 3 medidas de cada, pero unicamente voy a poner 2 captura de cada ya que son muchas captuaras y los resultados son muy parecidas:
 
 ## 1. Tests 1
 
@@ -229,7 +262,7 @@ A continuacion se mostrarán los resultados de los test, se han hecho 3 medidas 
 
    ![Linux](img/28.PNG)
 
-   Aquí se muestra las graficas que aparecen en los `blocks volumes` en la página de Oracle Cloud. Parece como si tuviese un limite puesto en el IOPS y en Throughput. Durante los test llegan al limite de los 3000 IOPS y los 24MB/s.
+   Aquí se muestran las gráficas que aparecen en los `blocks volumes` en la página de Oracle Cloud. Parece como si tuviese un limite puesto en el IOPS y en Throughput. Durante los test llegan al limite de los 3000 IOPS y los 24MB/s.
 
 ### Paso 3: Interpretar los Resultados
 
