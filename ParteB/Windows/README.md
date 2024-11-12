@@ -18,17 +18,17 @@ Una vez tenemos nuestro Windows iniciado con los discos agregados, procedemos a 
 
    ![Windows](img/1.PNG)
 
-Hacemos clic derecho en cada disco y marcamos la opcion `online`para activarlos y seguidamente eliminamos las particiones que trae por defecto.
+Hacemos clic derecho en cada disco y marcamos la opción `online` para activarlos y seguidamente eliminamos las particiones que trae por defecto.
 
 2. **Crear Particiones en el Primer Disco (NTFS)**:
 
-   ![Windows](img/9.PNG)
+   ![Windows](img/9.png)
 
 - Antes de hacer nada cambiamos las tablas de particiones de los discos a GPT.
 
    ![Windows](img/2.PNG)
 
- - Seleccionamos el primer disco, hacemos clic derecho en el espacio no asignado y eligimos **Nuevo Volumen Simple**.
+ - Seleccionamos el primer disco, hacemos clic derecho en el espacio no asignado y elegimos **Nuevo Volumen Simple**.
 
    ![Windows](img/3.PNG)
 
@@ -38,7 +38,7 @@ Hacemos clic derecho en cada disco y marcamos la opcion `online`para activarlos 
 
    - Creamos las particiones de 12800MB para que todas sean del mismo tamaño. (Puedes hacerlo del tamaño que prefieras).
 
-   - En el asistente, asignanos el sistema de archivos **NTFS** y nombramos los discos como refleja el ejercicio.
+   - En el asistente, asignamos el sistema de archivos **NTFS** y nombramos los discos como refleja el ejercicio.
 
 3. **Nombrar las Particiones**:
    - Nombramos las particiones de la siguiente manera:
@@ -54,40 +54,40 @@ Hacemos clic derecho en cada disco y marcamos la opcion `online`para activarlos 
 
 - Finalizamos.
 
-   ![Windows](img/10.PNG)
+   ![Windows](img/10.png)
 
 - Nuestro disco NTFS de 50GB esta listo con las 4 particiones.
 
 4. **Crear Particiones en el Segundo Disco (FAT32)**:
    - Repetimos el proceso anterior, pero esta vez vamos a seleccionar **FAT32** como sistema de archivos.
 
-   ![Windows](img/11.PNG)
+   ![Windows](img/11.png)
 
-- Vemos como no nos deja crear una particion de FAT32, ya que FAT32 esta limitada hasta particiones de 32GB. 
+- Vemos como no nos deja crear una partición de FAT32, ya que FAT32 esta limitada hasta particiones de 32GB. 
 
   - **Nota**: [Microsoft ha anunciado que desde la Build 27686 de Windows 11, permitirá formatear discos duros en FAT32 hasta 2TB de capacidad](https://blogs.windows.com/windows-insider/2024/08/15/announcing-windows-11-insider-preview-build-27686-canary-channel/)
 
-   ![Windows](img/12.PNG)
+   ![Windows](img/12.png)
 
 - Volvemos atrás y cambiamos el tamaño a 32768MB (32GB) y continuamos.
 
-   ![Windows](img/13.PNG)
+   ![Windows](img/13.png)
 
-- Ahora si nos deja formatear la particion de 32GB a FAT32.
+- Ahora si nos deja formatear la partición de 32GB a FAT32.
 
-   ![Windows](img/14.PNG)
+   ![Windows](img/14.png)
 
-- Como vemos aquí, ya tenemos esa particion FAT32 creada, pero no es realmente lo que queremos. Nosotros queremos el disco entero.
+- Como vemos aquí, ya tenemos esa partición FAT32 creada, pero no es realmente lo que queremos. Nosotros queremos el disco entero.
 
-   ![Windows](img/18.PNG)
+   ![Windows](img/18.png)
 
-- Para tener el disco entero formateado en FAT32, vamos a borrar la particion que habiamos creado y seguidamente creamos una entera en formato NTFS.
+- Para tener el disco entero formateado en FAT32, vamos a borrar la partición que habíamos creado y seguidamente creamos una entera en formato NTFS.
 
-   ![Windows](img/19.PNG)
+   ![Windows](img/19.png)
 
-- Vamos a utilizar esta herramienta para formatear los discos en FAT32 "FAT32 Format". Seleccionamos la letra `H:\` que en este caso es donde esta nuestro disco con la particion NTFS, y pulsamos sobre `Start`.
+- Vamos a utilizar esta herramienta para formatear los discos en FAT32 "FAT32 Format". Seleccionamos la letra `H:\` que en este caso es donde esta nuestro disco con la partición NTFS, y pulsamos sobre `Start`.
 
-   ![Windows](img/20.PNG)
+   ![Windows](img/20.png)
 
 - Cuando termine el formateo del disco, ya lo tendremos completamente en FAT32.
 
